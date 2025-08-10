@@ -1,0 +1,35 @@
+messageOutdatedLuaAPI: >
+  Modern Mehrunes' Razor warning!
+  You need to update your OpenMW, otherwise the mod won't work!
+  Please install a newer build from at least August 2025!
+messageSuccessfulBackstab1: "Backstab dealt x"
+messageSuccessfulBackstab2: " more damage!"
+
+
+page_name: "Backstabs"
+page_description: "Allows you to hit people in the back for extra damage. No sneak checks!"
+
+general_group_name: "General"
+modEnabled_name: "Mod Enabled"
+mode_name: "Damage Modifier"
+mode_description: |
+  - FM -> Flat Multiplier
+  - PS -> Player Sneak
+  - SM -> Sneak Multiplier
+  
+  Available modes:
+  - Mixed -> FM + PS * SM
+  - Skill-based -> PS * SM
+  - Flat -> FM
+  - Instakill -> self-explenatory
+flatMult_name: "Flat Multiplier"
+sneakMult_name: "Sneak Multiplier"
+npcFov_name: "Actor FOV"
+fightingMult_name: "Multiplier for Actors in Combat"
+fightingMult_description: "Multiplies initial damage multiplier if the actor is in combat. Min = 0.01"
+debugMode_name: "Debug Mode"
+debugMode_description: "Print successful backstab info in console."
+
+onBackstab_group_name: "On Backstab"
+showMessage_name: "Show message"
+playSFX_name: "Play SFX"

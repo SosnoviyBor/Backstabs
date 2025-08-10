@@ -1,0 +1,5 @@
+PLAYER: scripts/Backstabs/player.lua
+CREATURE: scripts/Backstabs/npc.lua
+NPC: scripts/Backstabs/npc.lua
+MENU: scripts/Backstabs/settingsMenu.lua
+GLOBAL: scripts/Backstabs/settingsGlobal.lua
