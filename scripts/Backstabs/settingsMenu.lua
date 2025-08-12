@@ -12,6 +12,7 @@ I.Settings.registerGroup {
     page = 'Backstabs',
     l10n = 'Backstabs',
     name = 'onBackstab_group_name',
+    order = 3,
     permanentStorage = true,
     settings = {
         {

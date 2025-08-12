@@ -6,14 +6,19 @@ require("scripts.Backstabs.backstabData")
 
 local sectionToggles = storage.globalSection("SettingsBackstabs_toggles")
 local sectionValues = storage.globalSection("SettingsBackstabs_values")
+local sectionWeaponTypes = storage.globalSection("SettingsBackstabs_weaponTypes")
+local sectionDebug = storage.globalSection("SettingsBackstabs_debug")
 
 function GetBackstabMultiplier(attack)
     -- check if youre seen
-    local attackerYaw = attack.attacker.rotation:getYaw()
-    local victimYaw = self.rotation:getYaw()
-    local diff = math.abs(victimYaw - attackerYaw)
-    local npcFov = math.pi * math.abs(sectionValues:get("npcFov") - 360) / 360
-    if diff > npcFov then return 1 end
+    local diff = 0
+    if not sectionDebug:get("alwaysBackstab") then
+        local attackerYaw = attack.attacker.rotation:getYaw()
+        local victimYaw = self.rotation:getYaw()
+        diff = math.abs(victimYaw - attackerYaw)
+        local npcFov = math.pi * math.abs(sectionValues:get("npcFov") - 360) / 360
+        if diff > npcFov then return 1 end
+    end
 
     -- init damage mult calculation
     local mode = Modes[sectionValues:get("mode")]
@@ -22,8 +27,8 @@ function GetBackstabMultiplier(attack)
     -- [[special cases]]
     -- if actor is an npc in combat
     if (I.AI ~= nil and I.AI.getActivePackage().type == "Combat")
-    -- or a player has a weapon or spell ready
-        or (I.AI == nil and types.Actor.getStance(self) ~= 0)
+        -- or a player has a weapon or spell ready
+        or (I.AI == nil and types.Actor.getStance(self) ~= types.Actor.STANCE.Nothing)
     then
         damageMult = damageMult * sectionValues:get("fightingMult")
     end
@@ -32,6 +37,7 @@ function GetBackstabMultiplier(attack)
         for _, instakillWeapon in ipairs(InstakillWeapons) do
             if attack.weapon.recordId == instakillWeapon then
                 damageMult = math.huge
+                break
             end
         end
     end
@@ -39,7 +45,7 @@ function GetBackstabMultiplier(attack)
     -- you shouldn't be able to hit for less damage
     damageMult = math.max(damageMult, 1)
 
-    if sectionToggles:get("debugMode") then
+    if sectionDebug:get("printToConsole") then
         print(
             "Backstabs multiplier debug message!" ..
             "\nAttacker:            " .. attack.attacker.recordId ..
@@ -55,13 +61,17 @@ end
 
 function DoBackstab(attack)
     if not sectionToggles:get("modEnabled") then return end
-    if not attack.successful then return end
-    if not (
-            (attack.sourceType == "melee" and attack.weapon and sectionToggles:get("enableMeleeWeapons"))
-            or (attack.sourceType == "melee" and attack.weapon == nil and sectionToggles:get("enableH2h"))
-            or (attack.sourceType == "ranged" and sectionToggles:get("enableRangedWeapons"))
-        ) then
-        return
+    -- basic attack check
+    if not attack.successful
+        or attack.sourceType == "magic"
+        or attack.sourceType == "unspecified"
+        then return end
+    -- weapon type check
+    if attack.weapon == nil then
+        if     I.AI ~= nil and not sectionWeaponTypes:get("h2hEnabled") then return
+        elseif I.AI == nil and not sectionToggles:get("creatureBackstabsEnabled") then return end
+    else
+        if not WeaponTypes[attack.weapon.TYPE]() then return end
     end
 
     local damageMult = GetBackstabMultiplier(attack)
@@ -72,7 +82,7 @@ function DoBackstab(attack)
         local initDamage = attack.damage.health
         attack.damage.health = attack.damage.health * damageMult
 
-        if sectionToggles:get("debugMode") then
+        if sectionDebug:get("printToConsole") then
             print(
                 "Backstabs damage debug message!" ..
                 "\nDamage is dealt to:  health" ..
@@ -84,7 +94,7 @@ function DoBackstab(attack)
         local initDamage = attack.damage.fatigue
         attack.damage.fatigue = attack.damage.fatigue * damageMult
 
-        if sectionToggles:get("debugMode") then
+        if sectionDebug:get("printToConsole") then
             print(
                 "Backstabs debug message!" ..
                 "\nDamage is dealt to:  fatigue" ..

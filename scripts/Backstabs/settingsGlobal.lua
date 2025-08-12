@@ -5,29 +5,12 @@ I.Settings.registerGroup {
     page = 'Backstabs',
     l10n = 'Backstabs',
     name = 'toggles_group_name',
+    order = 0,
     permanentStorage = true,
     settings = {
         {
             key = 'modEnabled',
             name = 'modEnabled_name',
-            renderer = 'checkbox',
-            default = true,
-        },
-        {
-            key = 'enableMeleeWeapons',
-            name = 'enableMeleeWeapons_name',
-            renderer = 'checkbox',
-            default = true,
-        },
-        {
-            key = 'enableRangedWeapons',
-            name = 'enableRangedWeapons_name',
-            renderer = 'checkbox',
-            default = true,
-        },
-        {
-            key = 'enableH2h',
-            name = 'enableH2h_name',
             renderer = 'checkbox',
             default = true,
         },
@@ -38,18 +21,106 @@ I.Settings.registerGroup {
             default = true,
         },
         {
+            key = 'creatureBackstabsEnabled',
+            name = 'creatureBackstabsEnabled_name',
+            renderer = 'checkbox',
+            default = true,
+        },
+        {
             key = 'enableSpecialWeaponInstakill',
             name = 'enableSpecialWeaponInstakill_name',
             description = 'enableSpecialWeaponInstakill_description',
             renderer = 'checkbox',
             default = false,
         },
+    }
+}
+
+I.Settings.registerGroup {
+    key = 'SettingsBackstabs_weaponTypes',
+    page = 'Backstabs',
+    l10n = 'Backstabs',
+    name = 'weaponTypes_group_name',
+    order = 2,
+    permanentStorage = true,
+    settings = {
         {
-            key = 'debugMode',
-            name = 'debugMode_name',
-            description = 'debugMode_description',
+            key = 'axeOneEnabled',
+            name = 'axeOneEnabled_name',
             renderer = 'checkbox',
-            default = false,
+            default = true,
+        },
+        {
+            key = 'axeTwoEnabled',
+            name = 'axeTwoEnabled_name',
+            renderer = 'checkbox',
+            default = true,
+        },
+        {
+            key = 'bluntOneEnabled',
+            name = 'bluntOneEnabled_name',
+            renderer = 'checkbox',
+            default = true,
+        },
+        {
+            key = 'bluntTwoCloseEnabled',
+            name = 'bluntTwoCloseEnabled_name',
+            renderer = 'checkbox',
+            default = true,
+        },
+        {
+            key = 'bluntTwoWideEnabled',
+            name = 'bluntTwoWideEnabled_name',
+            renderer = 'checkbox',
+            default = true,
+        },
+        {
+            key = 'longBladeOneEnabled',
+            name = 'longBladeOneEnabled_name',
+            renderer = 'checkbox',
+            default = true,
+        },
+        {
+            key = 'longBladeTwoEnabled',
+            name = 'longBladeTwoEnabled_name',
+            renderer = 'checkbox',
+            default = true,
+        },
+        {
+            key = 'shortBladesnabled',
+            name = 'shortBladesEnabled_name',
+            renderer = 'checkbox',
+            default = true,
+        },
+        {
+            key = 'spearsEnabled',
+            name = 'spearsEnabled_name',
+            renderer = 'checkbox',
+            default = true,
+        },
+        {
+            key = 'marksmanBowEnabled',
+            name = 'marksmanBowEnabled_name',
+            renderer = 'checkbox',
+            default = true,
+        },
+        {
+            key = 'marksmanCrossbowEnabled',
+            name = 'marksmanCrossbowEnabled_name',
+            renderer = 'checkbox',
+            default = true,
+        },
+        {
+            key = 'marksmanThrownEnabled',
+            name = 'marksmanThrownEnabled_name',
+            renderer = 'checkbox',
+            default = true,
+        },
+        {
+            key = 'h2hEnabled',
+            name = 'h2hEnabled_name',
+            renderer = 'checkbox',
+            default = true,
         },
     }
 }
@@ -60,6 +131,7 @@ I.Settings.registerGroup {
     l10n = 'Backstabs',
     name = 'values_group_name',
     description = "values_group_description",
+    order = 1,
     permanentStorage = true,
     settings = {
         {
@@ -89,6 +161,7 @@ I.Settings.registerGroup {
         {
             key = 'sneakMult',
             name = 'sneakMult_name',
+            description = 'sneakMult_description',
             renderer = 'number',
             integer = false,
             default = 0.05,
@@ -118,6 +191,30 @@ I.Settings.registerGroup {
             integer = false,
             default = 0.25,
             min = 0.01
+        },
+    }
+}
+
+I.Settings.registerGroup {
+    key = 'SettingsBackstabs_debug',
+    page = 'Backstabs',
+    l10n = 'Backstabs',
+    name = 'debug_group_name',
+    order = 100,
+    permanentStorage = true,
+    settings = {
+        {
+            key = 'alwaysBackstab',
+            name = 'alwaysBackstab_name',
+            renderer = 'checkbox',
+            default = false,
+        },
+        {
+            key = 'printToConsole',
+            name = 'printToConsole_name',
+            description = 'printToConsole_description',
+            renderer = 'checkbox',
+            default = false,
         },
     }
 }

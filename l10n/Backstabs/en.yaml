@@ -6,21 +6,38 @@ messageSuccessfulBackstab1: "Backstab dealt x"
 messageSuccessfulBackstab2: " more damage!"
 
 
+
+
+
 page_name: "Backstabs"
 page_description: "Allows you to hit people in the back for extra damage. No sneak checks!"
 
+
 toggles_group_name: "Toggles"
 modEnabled_name: "Mod Enabled"
-enableMeleeWeapons_name: "Melee Weapons Can Backstab"
-enableRangedWeapons_name: "Ranged Weapons Can Backstab"
-enableH2h_name: "H2H Can Backstab"
 playerCanBeBackstabbed_name: "Player Can Be Backstabbed"
+creatureBackstabsEnabled_name: "Creatures Can Backstab"
 enableSpecialWeaponInstakill_name: "Instakill Backstabs for Special Weapons"
 enableSpecialWeaponInstakill_description: |
   Special weapons are:
   - Mehrunes' Razor
-debugMode_name: "Debug Mode"
-debugMode_description: "Print successful backstab info in console."
+
+
+weaponTypes_group_name: "Enabled Weapon Types"
+axeOneEnabled_name: "Axes - One-handed"
+axeTwoEnabled_name: "Axes - Two-handed"
+bluntOneEnabled_name: "Blunt - One-handed"
+bluntTwoCloseEnabled_name: "Blunt - Two-handed Close (War Hammers)"
+bluntTwoWideEnabled_name: "Blunt - Two-handed Wide (Staves)"
+longBladeOneEnabled_name: "Long Blades - One-handed"
+longBladeTwoEnabled_name: "Long Blades - Two-handed"
+shortBladesEnabled_name: "Short Blades"
+spearsEnabled_name: "Spears"
+marksmanBowEnabled_name: "Bows"
+marksmanCrossbowEnabled_name: "Crossbows"
+marksmanThrownEnabled_name: "Thrown Weapons"
+h2hEnabled_name: "Hand to Hand"
+
 
 values_group_name: "Values"
 values_group_description: |
@@ -37,6 +54,9 @@ mode_description: |
   - Instakill -> math.huge
 flatMult_name: "Flat Multiplier"
 sneakMult_name: "Sneak Multiplier"
+sneakMult_description: >
+  Default value is set up for Mixed formula.
+  For Gradual I would suggest setting the value to 1.
 gradualStep_name: "Gradual Formula Step"
 npcFov_name: "Actor FOV"
 fightingMult_name: "Multiplier for Actors in Combat"
@@ -44,8 +64,16 @@ fightingMult_description: >
   Multiplies initial damage multiplier
   if the NPC is in combat
   or the player has weapon or spell ready.
+  Set it to 1 to disable the effect.
   Min = 0.01
 
+
+debug_group_name: "Debug"
 onBackstab_group_name: "On Backstab"
 showMessage_name: "Show Message"
 playSFX_name: "Play SFX"
+
+
+alwaysBackstab_name: "Always Backstab"
+printToConsole_name: "Print to Console"
+printToConsole_description: "Print successful backstab info in lua console."

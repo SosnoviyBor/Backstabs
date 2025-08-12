@@ -25,7 +25,7 @@ There are multiple damage formula presets to choose from:
 - Gradual -> AS // step * SM (// is integer division)
 - Skill-based -> AS * SM
 - Flat -> FM
-- Instakill -> self-explenatory
+- Instakill -> math.huge
 
 If the actor is in combat, the formula is multiplied by an additional value. This applies to:
 - NPCs who currently hin combat with anyone
