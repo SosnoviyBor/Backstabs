@@ -9,27 +9,43 @@ messageSuccessfulBackstab2: " more damage!"
 page_name: "Backstabs"
 page_description: "Allows you to hit people in the back for extra damage. No sneak checks!"
 
-general_group_name: "General"
+toggles_group_name: "Toggles"
 modEnabled_name: "Mod Enabled"
-mode_name: "Damage Modifier"
-mode_description: |
-  - FM -> Flat Multiplier
-  - PS -> Player Sneak
-  - SM -> Sneak Multiplier
-  
-  Available modes:
-  - Mixed -> FM + PS * SM
-  - Skill-based -> PS * SM
-  - Flat -> FM
-  - Instakill -> self-explenatory
-flatMult_name: "Flat Multiplier"
-sneakMult_name: "Sneak Multiplier"
-npcFov_name: "Actor FOV"
-fightingMult_name: "Multiplier for Actors in Combat"
-fightingMult_description: "Multiplies initial damage multiplier if the actor is in combat. Min = 0.01"
+enableMeleeWeapons_name: "Melee Weapons Can Backstab"
+enableRangedWeapons_name: "Ranged Weapons Can Backstab"
+enableH2h_name: "H2H Can Backstab"
+playerCanBeBackstabbed_name: "Player Can Be Backstabbed"
+enableSpecialWeaponInstakill_name: "Instakill Backstabs for Special Weapons"
+enableSpecialWeaponInstakill_description: |
+  Special weapons are:
+  - Mehrunes' Razor
 debugMode_name: "Debug Mode"
 debugMode_description: "Print successful backstab info in console."
 
+values_group_name: "Values"
+values_group_description: |
+  FM -> Flat Multiplier
+  AS -> Attacker Sneak
+  SM -> Sneak Multiplier
+mode_name: "Damage Multiplier Formula"
+mode_description: |
+  - Mixed -> FM + AS * SM
+  - Gradual -> AS // step * SM
+  (// = integer division)
+  - Skill-based -> AS * SM
+  - Flat -> FM
+  - Instakill -> math.huge
+flatMult_name: "Flat Multiplier"
+sneakMult_name: "Sneak Multiplier"
+gradualStep_name: "Gradual Formula Step"
+npcFov_name: "Actor FOV"
+fightingMult_name: "Multiplier for Actors in Combat"
+fightingMult_description: >
+  Multiplies initial damage multiplier
+  if the NPC is in combat
+  or the player has weapon or spell ready.
+  Min = 0.01
+
 onBackstab_group_name: "On Backstab"
-showMessage_name: "Show message"
+showMessage_name: "Show Message"
 playSFX_name: "Play SFX"
