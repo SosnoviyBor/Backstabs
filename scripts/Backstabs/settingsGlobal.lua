@@ -27,6 +27,13 @@ I.Settings.registerGroup {
             default = true,
         },
         {
+            key = 'requireCrouching',
+            name = 'requireCrouching_name',
+            description = 'requireCrouching_description',
+            renderer = 'checkbox',
+            default = true,
+        },
+        {
             key = 'enableSpecialWeaponInstakill',
             name = 'enableSpecialWeaponInstakill_name',
             description = 'enableSpecialWeaponInstakill_description',
@@ -142,18 +149,17 @@ I.Settings.registerGroup {
             argument = {
                 l10n = "Backstabs",
                 items = {
-                    "Mixed",
-                    "Gradual",
-                    "Skill-only",
-                    "Flat-only",
+                    "Linear",
+                    "Threshold",
                     "Instakill"
                 },
             },
-            default = "Mixed"
+            default = "Linear"
         },
         {
             key = 'flatMult',
             name = 'flatMult_name',
+            description = 'flatMult_description',
             renderer = 'number',
             integer = false,
             default = 1.5,
@@ -167,8 +173,8 @@ I.Settings.registerGroup {
             default = 0.05,
         },
         {
-            key = 'gradualStep',
-            name = 'gradualStep_name',
+            key = 'thresholdStep',
+            name = 'thresholdStep_name',
             renderer = 'number',
             integer = true,
             default = 25,

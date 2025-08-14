@@ -17,10 +17,13 @@ toggles_group_name: "Toggles"
 modEnabled_name: "Mod Enabled"
 playerCanBeBackstabbed_name: "Player Can Be Backstabbed"
 creatureBackstabsEnabled_name: "Creatures Can Backstab"
+requireCrouching_name: "Require Crouching"
+requireCrouching_description: "Doesn't check the sneaking status, only whether the player is crouching. (Applies only to the player)"
 enableSpecialWeaponInstakill_name: "Instakill Backstabs for Special Weapons"
 enableSpecialWeaponInstakill_description: |
   Special weapons are:
   - Mehrunes' Razor
+  Disabled for "essential" NPCs.
 
 
 weaponTypes_group_name: "Enabled Weapon Types"
@@ -46,18 +49,20 @@ values_group_description: |
   SM -> Sneak Multiplier
 mode_name: "Damage Multiplier Formula"
 mode_description: |
-  - Mixed -> FM + AS * SM
-  - Gradual -> AS // step * SM
-  (// = integer division)
-  - Skill-based -> AS * SM
-  - Flat -> FM
-  - Instakill -> math.huge
+  Linear -> FM + AS * SM
+  Threshold -> FM + AS // step * SM
+    (// = integer division)
+  Instakill -> math.huge
+    (disabled for "essential" NPCs)
 flatMult_name: "Flat Multiplier"
+flatMult_description: >
+  Default value is set up for the Linear formula.
+  For Threshold I would suggest setting the value to 0.
 sneakMult_name: "Sneak Multiplier"
 sneakMult_description: >
-  Default value is set up for Mixed formula.
-  For Gradual I would suggest setting the value to 1.
-gradualStep_name: "Gradual Formula Step"
+  Default value is set up for the Linear formula.
+  For Threshold I would suggest setting the value to 1.
+thresholdStep_name: "Threshold Formula Step"
 npcFov_name: "Actor FOV"
 fightingMult_name: "Multiplier for Actors in Combat"
 fightingMult_description: >

@@ -8,9 +8,10 @@ If the NPC doesn't see you, they don't expect you to act. That's the idea.
 
 You deal more damage when they don't expect you to strike! The conditions are:
 - You need to be out of victim's FOV
+- You need to crouch
 - The higher your sneak level, the more damage you deal
 - If victim's in combat, damage multiplier is lowered
-- **Sneaking status and crouching don't do anything**
+- **Sneaking status don't do anything**
 
 Same rules apply to you, the player, too. So watch your back!
 
@@ -21,14 +22,12 @@ SM -> Sneak Multiplier
 ```
 
 There are multiple damage formula presets to choose from:
-- Mixed -> FM + AS * SM
-- Gradual -> AS // step * SM (// is integer division)
-- Skill-based -> AS * SM
-- Flat -> FM
+- Linear -> FM + AS * SM
+- Threshold -> FM + AS // step * SM (// is integer division)
 - Instakill -> math.huge
 
 If the actor is in combat, the formula is multiplied by an additional value. This applies to:
-- NPCs who currently hin combat with anyone
+- NPCs who currently are in combat
 - Player who have weapon or spell ready
 
 You can also make backstabs with Mehrunes' Razor lethal. With a few exceptions (ikyk).

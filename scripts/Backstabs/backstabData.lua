@@ -1,6 +1,8 @@
 local storage = require("openmw.storage")
 local types = require("openmw.types")
+local self = require("openmw.self")
 require("scripts.Backstabs.utils")
+require("scripts.Backstabs.instakillBlacklist")
 
 local sectionValues = storage.globalSection("SettingsBackstabs_values")
 local swt = storage.globalSection("SettingsBackstabs_weaponTypes")
@@ -10,29 +12,22 @@ InstakillWeapons = {
 }
 
 Modes = {
-    ["Mixed"] = function(attacker)
+    ["Linear"] = function(attacker)
         local fm = sectionValues:get("flatMult")
         local as = TryGetActorSneak(attacker)
         local sm = sectionValues:get("sneakMult")
         return fm + as * sm
     end,
-    ["Gradual"] = function(attacker)
-        local as = TryGetActorSneak(attacker)
-        local step = sectionValues:get("gradualStep")
-        local sm = sectionValues:get("sneakMult")
-        return IntDiv(as, step) * sm
-    end,
-    ["Skill-based"] = function(attacker)
-        local as = TryGetActorSneak(attacker)
-        local sm = sectionValues:get("sneakMult")
-        return as * sm
-    end,
-    ["Flat"] = function(attacker)
+    ["Threshold"] = function(attacker)
         local fm = sectionValues:get("flatMult")
-        return fm
+        local as = TryGetActorSneak(attacker)
+        local step = sectionValues:get("thresholdStep")
+        local sm = sectionValues:get("sneakMult")
+        return fm + IntDiv(as, step) * sm
     end,
     ["Instakill"] = function(attacker)
-        return math.huge
+        if InInstakillBlacklist(self) then return 1
+        else return math.huge end
     end
 }
 

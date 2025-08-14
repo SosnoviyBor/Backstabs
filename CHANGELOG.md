@@ -1,5 +1,13 @@
 # Backstabs
 
+## 2.2
+
+### Features
+
+- Added toggle "Require Crouching" (applies only to the player)
+- Added blacklist for instakills
+- Simplified the Damage Multiplier Formula list
+
 ## 2.1.1
 
 ### Fixes
