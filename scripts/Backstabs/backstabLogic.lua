@@ -26,7 +26,9 @@ function GetBackstabMultiplier(attack)
 
     -- [[special cases]]
     -- if actor is an npc in combat
-    if (I.AI ~= nil and I.AI.getActivePackage().type == "Combat")
+    if (I.AI ~= nil
+        and I.AI.getActivePackage() ~= nil
+        and I.AI.getActivePackage().type == "Combat")
         -- or a player has a weapon or spell ready
         or (I.AI == nil and types.Actor.getStance(self) ~= types.Actor.STANCE.Nothing)
     then
@@ -50,7 +52,7 @@ function GetBackstabMultiplier(attack)
             "Backstabs multiplier debug message!" ..
             "\nAttacker:            " .. attack.attacker.recordId ..
             "\nVictim:              " .. self.recordId ..
-            "\nIs victim in combat: " .. tostring(I.AI == nil or I.AI.getActivePackage().type == "Combat") ..
+            "\nIs victim in combat: " .. tostring(I.AI ~= nil and I.AI.getActivePackage() ~= nil and I.AI.getActivePackage().type == "Combat") ..
             "\nWeapon used:         " .. (attack.weapon ~= nil and attack.weapon.recordId or "nil") ..
             "\nView angle diff:     " .. tostring(diff / math.pi * 360) .. " degrees" ..
             "\nDamage modifier:     x" .. tostring(damageMult))
@@ -71,7 +73,8 @@ function DoBackstab(attack)
         if     I.AI ~= nil and not sectionWeaponTypes:get("h2hEnabled") then return
         elseif I.AI == nil and not sectionToggles:get("creatureBackstabsEnabled") then return end
     else
-        if not WeaponTypes[attack.weapon.TYPE]() then return end
+        local weaponRecord = types.Weapon.record(attack.weapon.recordId)
+        if not WeaponTypes[weaponRecord.type]() then return end
     end
 
     local damageMult = GetBackstabMultiplier(attack)

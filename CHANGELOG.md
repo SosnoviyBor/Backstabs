@@ -1,5 +1,12 @@
 # Backstabs
 
+## 2.1.1
+
+### Fixes
+
+- Fixed incorrect weapon type checking (no clue how i missed it)
+- Fixed error on hitting actors with no active AI packets
+
 ## 2.1
 
 ### Features
