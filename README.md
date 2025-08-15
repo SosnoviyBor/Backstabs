@@ -19,16 +19,10 @@ The same rules apply to you as the player - so watch your back!
 
 ### Different Flavors
 
-```
-FM -> Flat Multiplier
-AS -> Attacker Sneak
-SM -> Sneak Multiplier
-```
-
 There are multiple damage formula presets to choose from:
 
-- **Linear** -> `FM + AS * SM`
-- **Threshold** -> `FM + (AS // step) * SM` (`//` = integer division)
+- **Linear** -> `FlatMultiplier + AttackerSneak * SneakMultiplier`
+- **Threshold** -> `FlatMultiplier + (AttackerSneak // step) * SneakMultiplier` (`//` = integer division)
 - **Instakill** -> `math.huge`
 
 ### Mid-combat Backstabs
@@ -78,7 +72,7 @@ Install like any other OpenMW mod.
 
 Yes.
 
-## Other Mods to Enhance Your Backstabbing Expirience
+## Other Mods to Enhance Your Backstabbing Experience
 
 - [Dynamic Reticle and Subtle Enemy Health Bar](https://www.nexusmods.com/morrowind/mods/56584) and [Dynamic Camera Effects and Target Lock](https://www.nexusmods.com/morrowind/mods/55327) by **MaxYari** – A complete overhaul of the camera and reticle. It’s a great mod everyone which everyone should use, but I especially want to highlight the dynamic vignette and reticle effects when the player is sneaking—great vibes.
 - [Smooth First-Person Sneak](https://www.nexusmods.com/morrowind/mods/55241) by **Wolfweim** – Adds a smooth up-and-down camera transition when sneaking.
