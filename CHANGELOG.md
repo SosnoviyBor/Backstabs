@@ -1,5 +1,12 @@
 # Backstabs
 
+## 2.2.1
+
+### Features
+- Added separate message for instakills
+- Slightly improved performance in a large crowds
+- Improved readme a bit
+
 ## 2.2
 
 ### Features

@@ -4,6 +4,7 @@ messageOutdatedLuaAPI: >
   Please install a newer build from at least August 2025!
 messageSuccessfulBackstab1: "Backstab dealt x"
 messageSuccessfulBackstab2: " more damage!"
+messageInstakill: "The backstab was fatal."
 
 
 

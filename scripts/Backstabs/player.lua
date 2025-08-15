@@ -14,8 +14,10 @@ local sectionOnBackstab = storage.playerSection("SettingsBackstabs_onBackstab")
 local sectionToggles = storage.globalSection("SettingsBackstabs_toggles")
 
 input.registerActionHandler(input.actions.Sneak.key, async:callback(function()
-    for _, actor in pairs(nearby.actors) do
-        actor:sendEvent("playerSneaking", not self.controls.sneak)
+    if sectionToggles:get("requireCrouching") then
+        for _, actor in pairs(nearby.actors) do
+            actor:sendEvent("playerSneaking", not self.controls.sneak)
+        end
     end
 end))
 
@@ -34,10 +36,14 @@ end
 local function onBackstab(damageMult)
     if sectionOnBackstab:get("playSFX") then ambient.playSound("critical damage") end
     if sectionOnBackstab:get("showMessage") then
-        ui.showMessage(
-            l10n("messageSuccessfulBackstab1") ..
-            tostring(damageMult) ..
-            l10n("messageSuccessfulBackstab2"))
+        if damageMult == math.huge then
+            ui.showMessage(l10n("messageInstakill"))
+        else
+            ui.showMessage(
+                l10n("messageSuccessfulBackstab1") ..
+                tostring(damageMult) ..
+                l10n("messageSuccessfulBackstab2"))
+        end
     end
 end
 
@@ -46,6 +52,6 @@ return {
         onLoad = onLoad
     },
     eventHandlers = {
-        BACKSTABS_onBackstab = onBackstab
+        onBackstab = onBackstab
     }
 }

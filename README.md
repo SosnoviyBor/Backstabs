@@ -6,14 +6,15 @@ If the NPC doesn't see you, they don't expect you to act. That's the idea.
 
 ## Features
 
-You deal more damage when they don't expect you to strike! The conditions are:
-- You need to be out of victim's FOV
-- You need to crouch
-- The higher your sneak level, the more damage you deal
-- If victim's in combat, damage multiplier is lowered
-- **Sneaking status don't do anything**
+You deal more damage when your target doesn't expect the strike! The conditions are:
 
-Same rules apply to you, the player, too. So watch your back!
+- You must be outside the victim's FOV.
+- You must be crouching.
+- The higher your Sneak level, the more damage you deal.
+- If the victim is in combat, the damage multiplier is reduced.
+- **Sneaking status itself does nothing.**
+
+The same rules apply to you as the player - so watch your back!
 
 ```
 FM -> Flat Multiplier
@@ -22,23 +23,30 @@ SM -> Sneak Multiplier
 ```
 
 There are multiple damage formula presets to choose from:
-- Linear -> FM + AS * SM
-- Threshold -> FM + AS // step * SM (// is integer division)
-- Instakill -> math.huge
 
-If the actor is in combat, the formula is multiplied by an additional value. This applies to:
-- NPCs who currently are in combat
-- Player who have weapon or spell ready
+- **Linear** → `FM + AS * SM`
+- **Threshold** → `FM + (AS // step) * SM` (`//` = integer division)
+- **Instakill** → `math.huge`
 
-You can also make backstabs with Mehrunes' Razor lethal. With a few exceptions (ikyk).
+If the actor is in combat, the formula is further multiplied by an additional value. This applies to:
 
-And every value is configurable to your liking.
+- NPCs currently in combat
+- The player, if a weapon or spell is ready
+
+You can also make backstabs with Mehrunes' Razor lethal - _with a few exceptions (ikyk)_.
+
+There are toggles for all weapon types. Keep in mind they apply to both you and NPCs.
+
+Every value is fully configurable.
 
 ## Requirements
-OpenMW July 2025 dev build or newer (API version 87 or newer).
+
+OpenMW July 2025 dev build or newer (API version 87+).
 
 ## Installation
-Installs like any other OpenMW mod. Not sure about pre-0.49 OpenMW support, but you should use newest builds anyway.
+
+Install like any other OpenMW mod.
 
 ## Compatibility
+
 Yes.

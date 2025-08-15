@@ -129,5 +129,5 @@ function DoBackstab(attack)
     end
 
     if sectionDebug:get("printToConsole") then print(msg) end
-    attack.attacker:sendEvent("BACKSTABS_onBackstab", damageMult)
+    attack.attacker:sendEvent("onBackstab", damageMult)
 end
