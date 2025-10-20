@@ -8,35 +8,47 @@ local sectionToggles = storage.globalSection("SettingsBackstabs_toggles")
 local sectionValues = storage.globalSection("SettingsBackstabs_values")
 local sectionWeaponTypes = storage.globalSection("SettingsBackstabs_weaponTypes")
 local sectionDebug = storage.globalSection("SettingsBackstabs_debug")
+
 local selfIsPlayer = self.type == types.Player
 PlayerIsSneaking = false
+PlayerIsInvisible = false
 
 function UpdatePlayerSneakStatus(currentSneakStatus)
     PlayerIsSneaking = currentSneakStatus
 end
 
+function UpdatePlayerInvisStatus(currentInvisStatus)
+    PlayerIsInvisible = currentInvisStatus
+end
+
 local function isBackstabSuccessful(attack)
     -- basic attack check
-    if not attack.successful
-        or attack.sourceType == "magic"
-        or attack.sourceType == "unspecified"
-    then
+    if not (
+        attack.successful
+        and (attack.sourceType == "melee"
+            or attack.sourceType == "ranged"
+        )
+    ) then
         return false
     end
 
     if sectionDebug:get("alwaysBackstab") then return true end
 
     -- weapon type check
-    if attack.weapon == nil then
-        if not selfIsPlayer and not sectionWeaponTypes:get("h2hEnabled") then
-            return false
-        elseif selfIsPlayer and not sectionToggles:get("creatureBackstabsEnabled") then
+    local weapon = attack.weapon
+    if weapon then
+        -- armed attack
+        local weaponType = types.Weapon.record(weapon.recordId).type
+        if not WeaponTypes[weaponType]() then return false end
+    else
+        -- unarmed attack
+        if (selfIsPlayer and not sectionToggles:get("creatureBackstabsEnabled"))
+            or (not selfIsPlayer and not sectionWeaponTypes:get("h2hEnabled"))
+        then
             return false
         end
-    else
-        local weaponRecord = types.Weapon.record(attack.weapon.recordId)
-        if not WeaponTypes[weaponRecord.type]() then return false end
     end
+
     -- player crouch check
     if attack.attacker.type == types.Player
         and sectionToggles:get("requireCrouching")
@@ -44,13 +56,20 @@ local function isBackstabSuccessful(attack)
     then
         return false
     end
-    -- check if youre seen
+
+    -- check attacker active effects
+    local chameleonEffect = types.Actor.activeEffects(attack.attacker):getEffect("chameleon")
+    if chameleonEffect.magnitude >= 100 then return true end
+    if PlayerIsInvisible then return true end
+
+    -- check if attacker is seen
     local attackerYaw = attack.attacker.rotation:getYaw()
     local victimYaw = self.rotation:getYaw()
     local diff = math.abs(victimYaw - attackerYaw)
     local npcFov = math.pi * math.abs(sectionValues:get("npcFov") - 360) / 360
     if diff > npcFov then return false end
 
+    -- if all checks passed, backstab is successful
     return true
 end
 

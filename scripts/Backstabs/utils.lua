@@ -1,5 +1,12 @@
 local types = require("openmw.types")
 
+SwingAnimations = {
+    handtohand = true,
+    weapononehand = true,
+    weapontwohand = true,
+    weapontwowide = true,
+}
+
 function IntDiv(a, b)
     if b == 0 then error("division by zero") end
     local q = a / b

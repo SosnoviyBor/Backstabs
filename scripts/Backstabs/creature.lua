@@ -7,6 +7,7 @@ end)
 
 return {
     eventHandlers = {
-        playerSneaking = UpdatePlayerSneakStatus
+        playerSneaking = UpdatePlayerSneakStatus,
+        playerInvisible = UpdatePlayerInvisStatus,
     }
 }
