@@ -10,7 +10,7 @@ If the NPC doesn't see you, they don't expect you to act. That's the idea.
 
 You deal more damage when your target doesn't expect the strike! The conditions are:
 
-- You must be outside the victim's FOV.
+- You must be outside the victim's FOV (or have 100% chameleon or be invisible).
 - The higher your Sneak level, the more damage you deal.
 - If the victim is in combat, the damage multiplier is reduced.
 - **Sneaking status itself does nothing.**
