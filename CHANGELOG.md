@@ -5,7 +5,7 @@
 ### Features
 
 - FOV check is ignored if the player has 100% or more chameleon effect
-- Fov check is ignored if the player has invisibility effect
+- FOV check is ignored if the player has invisibility effect
 
 ## 2.2.1
 

@@ -1,1 +1,0 @@
-[ ] Skip FOV check if the player is invisible or has 100% chameleon
