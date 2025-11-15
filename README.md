@@ -62,15 +62,13 @@ Default values are just a formality.
 
 ## Requirements
 
-OpenMW July 2025 dev build or newer (API version 87+).
-
-## Installation
-
-Install like any other OpenMW mod.
+OpenMW July 2025 dev build or newer.
 
 ## Compatibility
 
-Yes.
+### Soft (non-critical) incompatibilities
+
+- [CHIM 2090](https://modding-openmw.gitlab.io/s3ctors-s3cret-st4sh/chim_2090/) by S3ctor - This mod already implements it's own backstabs
 
 ## Other Mods to Enhance Your Backstabbing Experience
 

@@ -1,5 +1,11 @@
 # Backstabs
 
+## 2.3.1
+
+### Fixes
+
+- Fixed throwing weapons breaking the mod
+
 ## 2.3
 
 ### Features

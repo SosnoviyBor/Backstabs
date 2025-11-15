@@ -36,10 +36,15 @@ local function isBackstabSuccessful(attack)
 
     -- weapon type check
     local weapon = attack.weapon
-    if weapon then
+    if weapon and not attack.ammo then
         -- armed attack
         local weaponType = types.Weapon.record(weapon.recordId).type
         if not WeaponTypes[weaponType]() then return false end
+    elseif attack.ammo then
+        -- thrown attack
+        if not sectionWeaponTypes:get("marksmanThrownEnabled") then
+            return false
+        end
     else
         -- unarmed attack
         if (selfIsPlayer and not sectionToggles:get("creatureBackstabsEnabled"))
